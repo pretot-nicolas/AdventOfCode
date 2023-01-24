@@ -33,7 +33,6 @@ pub fn part_one() {
     println!("Max calories on one single elf is : {max_count}");
 }
 
-
 /*
  * In part2 we use a vector to store all sum calories of all elf.
  * Then we sort the list, reverse it and take the 3 first element.
@@ -58,7 +57,7 @@ pub fn part_two() {
     // last sum
     vec.push(current_count);
 
-    // Sort + reverse (for convenience) 
+    // Sort + reverse (for convenience)
     vec.sort();
     vec.reverse();
 

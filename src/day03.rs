@@ -47,26 +47,25 @@ pub fn part_two() {
         working_group.push(unique_vec);
 
         if working_group.len() == 3 {
-
             let first_second_duplicate = get_duplicates_item(&working_group[0], &working_group[1]);
-            let unique_duplicate = get_unique_duplicate_item(&first_second_duplicate, &working_group[2]);
-           
+            let unique_duplicate =
+                get_unique_duplicate_item(&first_second_duplicate, &working_group[2]);
+
             sum_of_priority += get_priority_value(unique_duplicate);
 
             working_group.clear();
         }
     }
-    
+
     println!("Sum of all priority is {sum_of_priority}");
 }
-
 
 /**
  * Convert &str to vector of unique char.
  */
 pub fn string_to_vec(str: &str) -> Vec<char> {
     let mut vec: Vec<char> = Vec::new();
-    
+
     for c in str.chars() {
         if vec.iter().any(|x| c == *x) == false {
             vec.push(c)
@@ -77,7 +76,7 @@ pub fn string_to_vec(str: &str) -> Vec<char> {
 }
 
 /**
- * Return the first duplicate item that exist in the two vector. 
+ * Return the first duplicate item that exist in the two vector.
  */
 fn get_unique_duplicate_item(vec1: &Vec<char>, vec2: &Vec<char>) -> char {
     for c in vec1 {
@@ -91,7 +90,7 @@ fn get_unique_duplicate_item(vec1: &Vec<char>, vec2: &Vec<char>) -> char {
 
 /**
  * Return the vector of duplicate items between two vectors
- */ 
+ */
 fn get_duplicates_item(vec1: &Vec<char>, vec2: &Vec<char>) -> Vec<char> {
     let mut duplicates: Vec<char> = Vec::new();
 
@@ -114,7 +113,7 @@ fn get_priority_value(item: char) -> i32 {
     match item {
         'a'..='z' => (item as u8 - lower_normalize + 1) as i32,
         'A'..='Z' => (item as u8 - upper_normalize + 27) as i32,
-        _ => 0
+        _ => 0,
     }
 }
 

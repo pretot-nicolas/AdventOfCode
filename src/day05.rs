@@ -12,7 +12,7 @@ use std::io::{BufRead, BufReader};
  * - we fill each stack with vlaue of these line (see fill_stack)
  * If "is_parsing_dock" is false :
  * - we read a "move" line and perform the according move operation
- * 
+ *
  * To switch from "PartOne" to "PartTwo", the function called in "parse_and_perform_move" need to be changed accordingly
  */
 pub fn part_one_and_two() {
@@ -33,7 +33,7 @@ pub fn part_one_and_two() {
                 continue;
             } else {
                 fill_stacks(&line, &mut dock);
-            }   
+            }
         } else {
             parse_and_perform_move(&line, &mut dock1, &mut dock2);
         }
@@ -75,7 +75,7 @@ fn fill_stacks(line: &String, dock: &mut Vec<Vec<char>>) {
         }
 
         let current_match = matches[stack_id].as_str().trim();
-        
+
         if current_match.is_empty() == false {
             let letter = current_match.chars().nth(1).unwrap();
             dock[stack_id].push(letter);
@@ -94,12 +94,12 @@ fn fill_stacks(line: &String, dock: &mut Vec<Vec<char>>) {
 fn parse_and_perform_move(line: &String, dock1: &mut Vec<Vec<char>>, dock2: &mut Vec<Vec<char>>) {
     let regex = Regex::new("(\\d+)").unwrap();
     let matches: Vec<regex::Match> = regex.find_iter(line).collect();
-    
+
     if matches.len() == 3 {
         let count: usize = matches[0].as_str().parse().unwrap();
         let from: usize = matches[1].as_str().parse().unwrap();
         let to: usize = matches[2].as_str().parse().unwrap();
-    
+
         perform_move_part_one(dock1, from - 1, to - 1, count);
         perform_move_part_two(dock2, from - 1, to - 1, count);
     }
