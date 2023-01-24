@@ -29,10 +29,7 @@ fn main() {
    println!("Running Day04 Part 2 :");
    day04::part_two();
 
-   println!("Running Day05 Part 1 :");
+   println!("Running Day05 Part 1 & 2 :");
    day05::part_one_and_two();
-
-   println!("Running Day05 Part 2 :");
-   // day05::part_two();
 }
 

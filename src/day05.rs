@@ -18,12 +18,16 @@ use std::io::{BufRead, BufReader};
 pub fn part_one_and_two() {
     let lines = get_data();
     let mut dock: Vec<Vec<char>> = Vec::new();
+    let mut dock1: Vec<Vec<char>> = Vec::new();
+    let mut dock2: Vec<Vec<char>> = Vec::new();
     let mut is_parsing_dock = true;
 
     for line in lines {
         if is_parsing_dock {
             if line.is_empty() {
                 is_parsing_dock = false;
+                dock1 = dock.clone();
+                dock2 = dock.clone();
                 continue;
             } else if line.contains("1") {
                 continue;
@@ -31,17 +35,26 @@ pub fn part_one_and_two() {
                 fill_stacks(&line, &mut dock);
             }   
         } else {
-            parse_and_perform_move(&line, &mut dock);
+            parse_and_perform_move(&line, &mut dock1, &mut dock2);
         }
     }
 
-    let mut final_str = String::new();
+    // Part 1
+    let mut final_str1 = String::new();
 
-    for stacks in dock {
-        final_str.push(*stacks.first().unwrap());
+    for stacks in dock1 {
+        final_str1.push(*stacks.first().unwrap());
     }
 
-    println!("Finale sentence is {final_str}");
+    // Part 2
+    let mut final_str2 = String::new();
+
+    for stacks in dock2 {
+        final_str2.push(*stacks.first().unwrap());
+    }
+
+    println!("Finale sentence for part one is {final_str1}");
+    println!("Finale sentence for part two is {final_str2}");
 }
 
 /**
@@ -78,7 +91,7 @@ fn fill_stacks(line: &String, dock: &mut Vec<Vec<char>>) {
  * So in order the count value, the from stack id and the to stack id
  * As stack id start at 1 in dataset we substract 1 to match vector's id
  */
-fn parse_and_perform_move(line: &String, dock: &mut Vec<Vec<char>>) {
+fn parse_and_perform_move(line: &String, dock1: &mut Vec<Vec<char>>, dock2: &mut Vec<Vec<char>>) {
     let regex = Regex::new("(\\d+)").unwrap();
     let matches: Vec<regex::Match> = regex.find_iter(line).collect();
     
@@ -87,7 +100,8 @@ fn parse_and_perform_move(line: &String, dock: &mut Vec<Vec<char>>) {
         let from: usize = matches[1].as_str().parse().unwrap();
         let to: usize = matches[2].as_str().parse().unwrap();
     
-        perform_move_part_one(dock, from - 1, to - 1, count);
+        perform_move_part_one(dock1, from - 1, to - 1, count);
+        perform_move_part_two(dock2, from - 1, to - 1, count);
     }
 }
 
