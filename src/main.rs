@@ -3,6 +3,7 @@ mod day02;
 mod day03;
 mod day04;
 mod day05;
+mod resource_loader;
 
 fn main() {
     println!("Running Day01 Part 1 :");

@@ -1,12 +1,11 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use crate::resource_loader;
 
 /*
  * In part1 we loop throught the data and sum all line until we found an empty line
  * If an Empty line is found, check if the current sum is gretter than the max already stored.
  */
 pub fn part_one() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day01-data.txt");
     let mut max_count: i32 = 0;
     let mut current_count: i32 = 0;
 
@@ -38,7 +37,7 @@ pub fn part_one() {
  * Then we sort the list, reverse it and take the 3 first element.
  */
 pub fn part_two() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day01-data.txt");
     let mut vec = Vec::new();
     let mut current_count = 0;
 
@@ -67,15 +66,4 @@ pub fn part_two() {
 
         println!("Top3 carrying elf are carrying {total} calories");
     }
-}
-
-/**
- * Read data file
- */
-fn get_data() -> Vec<String> {
-    let file = File::open("Resources\\day01-data.txt").unwrap();
-    let reader = BufReader::new(file);
-    let lines: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
-
-    return lines;
 }

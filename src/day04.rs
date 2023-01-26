@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use crate::resource_loader;
 
 /**
  * In "PartOne" we loop through the data. For each line, we split by the ',' to sperate ranges.
@@ -8,7 +7,7 @@ use std::io::{BufRead, BufReader};
  * We change the number of overlapp accordingly
  */
 pub fn part_one() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day04-data.txt");
     let mut number_of_full_overlap = 0;
 
     for line in lines {
@@ -34,7 +33,7 @@ pub fn part_one() {
  * We then call the range_distinct function that check the boundary of ranges to find if they do not overlap
  */
 pub fn part_two() {
-    let lines = get_data();
+    let lines =  resource_loader::load_resource("day04-data.txt");
     let mut number_of_pair_overlap = 0;
 
     for line in lines {
@@ -82,15 +81,4 @@ fn range_contains(range1: &(i32, i32), range2: &(i32, i32)) -> bool {
  */
 fn range_distinct(range1: &(i32, i32), range2: &(i32, i32)) -> bool {
     return range1.1 < range2.0 || range2.1 < range1.0;
-}
-
-/**
- * Read data file
- */
-fn get_data() -> Vec<String> {
-    let file = File::open("Resources\\day04-data.txt").unwrap();
-    let reader = BufReader::new(file);
-    let lines: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
-
-    return lines;
 }

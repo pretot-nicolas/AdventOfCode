@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use crate::resource_loader;
 
 /*
  * In Part1 we loop thought all lines and for each line we split it into part by half
@@ -9,7 +8,7 @@ use std::io::{BufRead, BufReader};
  * Then we sum all of them.
  */
 pub fn part_one() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day03-data.txt");
     let mut sum_of_priority = 0;
 
     for line in lines {
@@ -38,7 +37,7 @@ pub fn part_one() {
  * Then the group is cleared to start another one.
  */
 pub fn part_two() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day03-data.txt");
     let mut working_group: Vec<Vec<char>> = Vec::new();
     let mut sum_of_priority = 0;
 
@@ -115,15 +114,4 @@ fn get_priority_value(item: char) -> i32 {
         'A'..='Z' => (item as u8 - upper_normalize + 27) as i32,
         _ => 0,
     }
-}
-
-/**
- * Read data file
- */
-fn get_data() -> Vec<String> {
-    let file = File::open("Resources\\day03-data.txt").unwrap();
-    let reader = BufReader::new(file);
-    let lines: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
-
-    return lines;
 }

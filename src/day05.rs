@@ -1,7 +1,6 @@
+use crate::resource_loader;
 extern crate regex;
 use regex::Regex;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 
 /**
  * In "Day05" we use the same function to do "PartOne" and "PartTwo"
@@ -16,7 +15,7 @@ use std::io::{BufRead, BufReader};
  * To switch from "PartOne" to "PartTwo", the function called in "parse_and_perform_move" need to be changed accordingly
  */
 pub fn part_one_and_two() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day05-data.txt");
     let mut dock: Vec<Vec<char>> = Vec::new();
     let mut dock1: Vec<Vec<char>> = Vec::new();
     let mut dock2: Vec<Vec<char>> = Vec::new();
@@ -127,13 +126,3 @@ fn perform_move_part_two(dock: &mut Vec<Vec<char>>, from: usize, to: usize, coun
     dock[to].splice(0..0, moved_crates.into_iter());
 }
 
-/**
- * Read data file
- */
-fn get_data() -> Vec<String> {
-    let file = File::open("Resources\\day05-data.txt").unwrap();
-    let reader = BufReader::new(file);
-    let lines: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
-
-    return lines;
-}

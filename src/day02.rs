@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use crate::resource_loader;
 
 /**
  * In part one, we loop through the data. For each line, we take both letters separately.
@@ -10,7 +9,7 @@ use std::io::{BufRead, BufReader};
  * Afterwards, we retrieve the score for the shape and outcome and add it to the score variable.
 */
 pub fn part_one() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day02-data.txt");
 
     let mut score: i32 = 0;
 
@@ -42,7 +41,7 @@ pub fn part_one() {
  * Like part1 the score is then computed.
  */
 pub fn part_two() {
-    let lines = get_data();
+    let lines = resource_loader::load_resource("day02-data.txt");
 
     let mut score: i32 = 0;
 
@@ -177,16 +176,6 @@ fn get_shape_for_outcome(opponent_shape: &Shape, target_outcome: &Outcome) -> Sh
     }
 }
 
-/**
- * Read data file
- */
-fn get_data() -> Vec<String> {
-    let file = File::open("Resources\\day02-data.txt").unwrap();
-    let reader = BufReader::new(file);
-    let lines: Vec<String> = reader.lines().map(|line| line.unwrap()).collect();
-
-    return lines;
-}
 
 // pub fn part_one() {
 //     let data = get_test_data();
