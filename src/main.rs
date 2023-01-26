@@ -3,6 +3,8 @@ mod day02;
 mod day03;
 mod day04;
 mod day05;
+mod day06;
+mod day07;
 mod resource_loader;
 
 fn main() {
@@ -32,4 +34,16 @@ fn main() {
 
     println!("Running Day05 Part 1 & 2 :");
     day05::part_one_and_two();
+
+    println!("Running Day06 Part 1 :");
+    day06::part_one();
+
+    println!("Running Day06 Part 2 :");
+    day06::part_two();
+
+    println!("Running Day07 Part 1 :");
+    day07::part_one();
+
+    println!("Running Day07 Part 2 :");
+    day07::part_two();
 }
