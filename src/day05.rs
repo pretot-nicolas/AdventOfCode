@@ -125,4 +125,3 @@ fn perform_move_part_two(dock: &mut Vec<Vec<char>>, from: usize, to: usize, coun
     let moved_crates = dock[from].drain(0..count).collect::<Vec<_>>();
     dock[to].splice(0..0, moved_crates.into_iter());
 }
-

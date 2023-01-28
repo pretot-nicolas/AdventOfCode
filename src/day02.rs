@@ -176,7 +176,6 @@ fn get_shape_for_outcome(opponent_shape: &Shape, target_outcome: &Outcome) -> Sh
     }
 }
 
-
 // pub fn part_one() {
 //     let data = get_test_data();
 

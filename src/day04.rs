@@ -33,7 +33,7 @@ pub fn part_one() {
  * We then call the range_distinct function that check the boundary of ranges to find if they do not overlap
  */
 pub fn part_two() {
-    let lines =  resource_loader::load_resource("day04-data.txt");
+    let lines = resource_loader::load_resource("day04-data.txt");
     let mut number_of_pair_overlap = 0;
 
     for line in lines {
