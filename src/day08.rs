@@ -1,5 +1,5 @@
 use crate::resource_loader;
-use std::{cmp::max };
+use std::cmp::max;
 
 /**
  * In "PartOne" we parse the map as a Vec<Vec<u32>>
@@ -58,7 +58,7 @@ pub fn part_one() {
 
     visible_tree_count += 4 * tree_map.len() - 4;
 
-    dbg!(visible_tree_count);
+    println!("Number of visible tree is {visible_tree_count}");
 }
 
 /**
@@ -148,5 +148,5 @@ pub fn part_two() {
         }
     }
 
-    dbg!(max_scenic_score);
+    println!("The tree with the maximum scenic score has a score of {max_scenic_score}");
 }
